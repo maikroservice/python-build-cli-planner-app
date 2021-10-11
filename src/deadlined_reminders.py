@@ -11,13 +11,13 @@ class DeadlinedMetaReminder(Iterable, metaclass=ABCMeta):
         pass
 
 
-class DeadlinedReminder(ABC, Iterable):
+class DeadlinedReminder(Iterable, ABC):
     @abstractmethod
     def is_due(self):
         pass
 
     @classmethod
-    def __subclass_hook__(cls, subclass):
+    def __subclasshook__(cls, subclass):
         if cls is not DeadlinedReminder:
             return NotImplemented
 
@@ -36,7 +36,7 @@ class DateReminder(DeadlinedReminder):
         self.text = text
 
     def is_due(self):
-        return self.date <= datetime.now()
+        return self.date < datetime.now()
 
     def __iter__(self):
-        return iter([text, self.date.isoformat()])
+        return iter([self.text, self.date.isoformat()])

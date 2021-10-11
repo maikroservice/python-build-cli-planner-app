@@ -1,7 +1,9 @@
-from deadlined_reminders import DeadlinedReminder
 from src.database import add_reminder, list_reminders
+from src.deadlined_reminders import DeadlinedReminder
 from src.external_reminders import EveningReminder
 from src.reminder import PoliteReminder
+
+DeadlinedReminder.register(PoliteReminder)
 
 
 def handle_input():
@@ -14,6 +16,7 @@ def handle_input():
 
     elif choice == "2":
         print()
+
         reminder = input("What would you like to be reminded about?: ")
         date = input("When is that due?: ")
 
