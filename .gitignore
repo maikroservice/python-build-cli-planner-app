@@ -63,3 +63,10 @@ typings/
 
 # next.js build output
 .next
+
+# cache files
+__pycache__/
+
+# database file
+*.csv
+reminders.csv
